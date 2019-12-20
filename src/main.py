@@ -101,8 +101,7 @@ def choising(r):
 
 url='https://course.fcu.edu.tw/'
 url_vcode='https://course.fcu.edu.tw/validateCode.aspx'
-NID='D0713227'
-Password='Hu99881212123'
+
 
 ID_D=input("please input four num course ID:")
 left=search.m_left_get(ID_D)
