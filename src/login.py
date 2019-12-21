@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import search
+import sub.search as search
 
 Session_requests=requests.Session()
 def loging(url):# loging
@@ -97,7 +97,7 @@ def choising(r):
 
 
 
-
+'''
 
 url='https://course.fcu.edu.tw/'
 url_vcode='https://course.fcu.edu.tw/validateCode.aspx'
@@ -110,7 +110,7 @@ if left<0:
 else:
     message="seat left:"+str(left)
 print(message)
-'''
+
 # if cannot loging
 # try
 r=loging(url)
