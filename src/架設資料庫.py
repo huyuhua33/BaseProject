@@ -31,11 +31,11 @@ bun3.pack()
 
 window.mainloop()
 """
-import sqlite3
 import random
-import time 
-import sub.mail
-import sub.online
+import sqlite3
+import sub.mailing as mail
+import sub.main
+
 def input_SQlite( SQL_name ,class_name, class_number, account ):
     conn = sqlite3.connect(SQL_name)
     data=(class_name, class_number, account);
@@ -77,22 +77,31 @@ conn = sqlite3.connect("tmp.db")
 conn.execute(sql)
 conn.close()
 """
-nid_address=input("NID帳號: ");
-nid_password=input("NID密碼: ");
-email=input("請輸入email: ");
-make_sure=random.randint(10000, 99999);
-sub.mail.mail(email,1,make_sure)
-tmp=sub.online.loging(nid_address, nid_password)
-print(tmp.url)
-email_sure=eval(input("請輸入驗證碼:"));
-if (email_sure==make_sure) :
-    print("驗證成功")
-    with open("login.txt","w") as login:
-        login.write(nid_address + ", " + nid_password + ", " + email);
+#nid_address='D0713227'
+#nid_password='Hu99881212123'
+#email='d0713227@mail.fcu.edu.tw'
+
+while(True):
+    nid_address=input("NID帳號: ");
+    nid_password=input("NID密碼: ");
+    email=input("請輸入email: ");
+    make_sure=random.randint(10000, 99999)
+
+    sub.mailing.mail(email,0,make_sure,0)
+    #tmp=sub.main.loging(nid_address, nid_password)
+    #print(tmp.url)
+    email_sure=int(input("請輸入驗證碼:"));
+    if (email_sure==make_sure) :
+        print("驗證成功")
+        with open("login.txt", "w") as login:
+            login.write(nid_address + ", " + nid_password + ", " + email);
+        break
+    else:
+        print("驗證失敗")
+        print("重新登入")
         
         
-        
-choice= input("選擇功能")
+choice= input("選擇功能: ")
 
 if(choice=="選課"):
     class_name=input("甚麼課?")
@@ -114,6 +123,7 @@ elif(choice=="退課"):
     """
     if(True):
         input_SQlite("class_table.db", class_name, class_id, nid_address)
+        print("退課成功")
 elif(choice=="查看課表"):
     conn = sqlite3.connect("class_table.db")
     table= conn.execute("SELECT * from users")
