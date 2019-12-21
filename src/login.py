@@ -90,7 +90,12 @@ def choising(r):
     }
     r = Session_requests.post(r.url, data=data)
     return r
-
+def loging_check(r):
+    w = r.text.find("錯誤")
+    if w == -1:
+        return True
+    else:
+        return False
 
 
 
