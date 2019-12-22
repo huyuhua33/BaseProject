@@ -98,13 +98,8 @@ def loging_check(r):
     else:
         return False
 
-url = 'https://course.fcu.edu.tw/'
-NID = 'D0713227'
-PW = 'Hu99881212123'
 
 
-
-print(w)
 
 
 
