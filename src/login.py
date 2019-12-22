@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import sub.search as search
 
 Session_requests=requests.Session()
-def loging(url):# loging
+def loging(url,NID,Password):# loging
     r = Session_requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     VIEWSTATE = soup.find(id="__VIEWSTATE")["value"]
@@ -11,6 +11,7 @@ def loging(url):# loging
     EVENTVALIDATION = soup.find(id="__EVENTVALIDATION")["value"]
 
     # get verificationCode
+    url_vcode = 'https://course.fcu.edu.tw/validateCode.aspx'
     r = Session_requests.get(url_vcode)
     v_code = r.headers['Set-Cookie'][slice(-12, -8)]
     # post to loging.aspx
@@ -30,7 +31,7 @@ def loging(url):# loging
     r = Session_requests.post('https://course.fcu.edu.tw/Login.aspx', data=data)  # url=html
     return r
     # loging finish
-def searching(r):
+def searching(r,ID_D):
     # goto corse searchingd
     soup = BeautifulSoup(r.text, 'html.parser')
     VIEWSTATE = soup.find(id="__VIEWSTATE")['value']
@@ -97,8 +98,13 @@ def loging_check(r):
     else:
         return False
 
+url = 'https://course.fcu.edu.tw/'
+NID = 'D0713227'
+PW = 'Hu99881212123'
 
 
+
+print(w)
 
 
 
