@@ -3,11 +3,11 @@ import json
 
 Session_requests=requests.Session()
 header = {'Content-Type': 'application/json'}
-def c_main(code):
+def c_main(code,y,sms):#y 民國學年 sms 1 or 2 
     url='https://coursesearch03.fcu.edu.tw/Service/Search.asmx/GetType2Result'
     s_code=code
     Request_Payload={
-        "baseOptions":{"lang":"cht","year":108,"sms":1},
+        "baseOptions":{"lang":"cht","year":y,"sms":sms},
         "typeOptions":{"code":{"enabled":True,"value":s_code},
                        "weekPeriod":{"enabled":False,"week":"*","period":"*"},
                        "course":{"enabled":False,"value":""},
