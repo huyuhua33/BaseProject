@@ -31,15 +31,12 @@ def c_left(r):
     m_Left = int(r.json()['d'][Left + 13:Left + 15])
     m_Max = int(r.json()['d'][Max + 12:Max + 14])
     left = m_Max - m_Left
-    return left
+    if left <= 0:
+        return 0
+    else:
+        return left
 
 
-r = c_main('123','108','1')
-try:
-    left = c_left(r)
-    print(left)
-except:
-    print("找尋錯誤")
 
 
 #{"d":"{\"message\":\"\",\"total\":0,\"items\":[]}"}
