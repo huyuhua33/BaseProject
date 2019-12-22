@@ -5,7 +5,6 @@ import ctypes
 session = requests.session()
 
 # data of user
-courseIDs = []
 userName = ''
 password = ''
 
@@ -46,23 +45,20 @@ def login():
     return html
 
 
-def main():
+def login_start():
 
     html = login()
 
     # input error
     if html.text.find('錯誤') != -1:
         ctypes.windll.user32.MessageBoxW(0, "帳號或密碼錯誤", 'Error', 0)
-        return -1
+        return -1, ''
 
     # the time is not allowed
     elif html.text.find('目前不是開放時間') != -1:
         ctypes.windll.user32.MessageBoxW(0, '目前不是開放時間', 'Error', 0)
-        return -1
+        return -1, ''
 
     else:
-        return 0
-
-
-if __name__ == '__main__':
-    main()
+        ctypes.windll.user32.MessageBoxW(0, '登入成功', 'Success', 0)
+        return 0, html
