@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import sub.search as search
 
 Session_requests=requests.Session()
-def loging(url,NID,Password):# loging
+def loging(NID,Password):# loging
+    url = 'https://course.fcu.edu.tw/'
     r = Session_requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     VIEWSTATE = soup.find(id="__VIEWSTATE")["value"]
@@ -97,10 +98,16 @@ def loging_check(r):
         return True
     else:
         return False
+'''
+
+url = 'https://course.fcu.edu.tw/'
+NID = 'D0713227'
+PW = 'Hu99881212123'
 
 
 
-
+print(w)
+'''
 
 
 '''

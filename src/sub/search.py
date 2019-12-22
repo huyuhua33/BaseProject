@@ -3,9 +3,8 @@ import json
 
 Session_requests=requests.Session()
 header = {'Content-Type': 'application/json'}
-def c_main(code,y,sms):#y 民國學年 sms 1 or 2 
+def c_main(s_code,y,sms):#y 民國學年 sms 1 or 2
     url='https://coursesearch03.fcu.edu.tw/Service/Search.asmx/GetType2Result'
-    s_code=code
     Request_Payload={
         "baseOptions":{"lang":"cht","year":y,"sms":sms},
         "typeOptions":{"code":{"enabled":True,"value":s_code},
@@ -32,4 +31,12 @@ def c_left(r):
     m_Left = int(r.json()['d'][Left + 13:Left + 15])
     m_Max = int(r.json()['d'][Max + 12:Max + 14])
     left = m_Max - m_Left
-    return left
+    if left <= 0:
+        return 0
+    else:
+        return left
+
+
+
+
+#{"d":"{\"message\":\"\",\"total\":0,\"items\":[]}"}
