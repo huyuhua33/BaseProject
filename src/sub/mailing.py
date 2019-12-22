@@ -37,3 +37,4 @@ def mail(receiver_email, sw, randword, id):
 
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, msg)
+    return 0
