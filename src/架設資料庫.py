@@ -78,8 +78,6 @@ conn.execute(sql)
 conn.close()
 """
 #nid_address='D0713227'
-#nid_password='Hu99881212123'
-#email='d0713227@mail.fcu.edu.tw'
 
 while(True):
     nid_address=input("NID帳號: ");
