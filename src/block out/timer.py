@@ -1,9 +1,12 @@
 import time
 
 
-def timeUpdate(initial=0.0):
-    now = time.time()
-    if now - initial >= 300:
-        regist(registHtml)
+def timeUpdate(enable, initial=0.0):
+    if enable:
+        now = time.time()
+        if now - initial >= 300:
+            register(enable, registHtml)
+        else:
+            return initial
     else:
-        return initial
+        return 0.0

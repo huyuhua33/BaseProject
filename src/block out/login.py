@@ -4,14 +4,8 @@ import ctypes
 
 session = requests.session()
 
-# data of user
-userName = ''
-password = ''
 
-
-def login():
-    userName = input('NID account number：')
-    password = input('NID password：')
+def login(username, password):
 
     # url of course and certification
     url = 'https://course.fcu.edu.tw/'
@@ -45,20 +39,20 @@ def login():
     return html
 
 
-def login_start():
+def login_start(username, password):
 
-    html = login()
+    html = login(username, password)
 
     # input error
     if html.text.find('錯誤') != -1:
         ctypes.windll.user32.MessageBoxW(0, "帳號或密碼錯誤", 'Error', 0)
-        return -1, ''
+        return 0, ''
 
     # the time is not allowed
     elif html.text.find('目前不是開放時間') != -1:
         ctypes.windll.user32.MessageBoxW(0, '目前不是開放時間', 'Error', 0)
-        return -1, ''
+        return 0, ''
 
     else:
         ctypes.windll.user32.MessageBoxW(0, '登入成功', 'Success', 0)
-        return 0, html
+        return 1, html
