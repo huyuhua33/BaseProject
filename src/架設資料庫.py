@@ -216,7 +216,6 @@ while(True):
     start_time=datetime.datetime.now()
     stop_time=start_time+datetime.timedelta(minutes=5)
     while (stop_time>datetime.datetime.now()):
-        print(stop_time-datetime.datetime.now())
         email_sure=int(input("請輸入驗證碼: "))
         if (email_sure==make_sure) :
             print("驗證成功")
