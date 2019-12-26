@@ -11,15 +11,23 @@ def mail(receiver_email, sw, randword, id):
     password = "Stesting1121"
     if (sw == 1):
         r = search.c_main(id,'108','1')
+
         try:
-            search.c_left(r)
+            c=search.c_left(r)
         except:
             return -1
-        ms = "the course u choice:" + search.c_name(r) + "\n" + "seat left: " + str(search.c_left(r))
+        if (c <= 0):
+            print("now waiting")
+            while (c <= 0):
+             c = search.c_left(r)
+        print("Finish!")
+        name = search.c_name(r)
+        c = str(search.c_left(r))
+        ms = "the course u choice:" + name + "\n" + "seat left: " + c
         # head="U got a corse"
         mime = MIMEText(ms, "plain", "utf-8")
-        mime["Subject"] = "Gmail sent by Python scripts(MIME)"
-        mime["From"] = "Your best friend"
+        mime["Subject"] = "課程剩餘通知:"+ name
+        mime["From"] = "搶課無極限"
         mime["To"] = "mailgroup"
     else:
         ms = str(randword)
