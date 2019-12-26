@@ -36,4 +36,13 @@ def c_left(r):
         return 0
     else:
         return left
-
+def c_check(NID,PW,year,sms):#y 民國學年 sms 1 or 2
+    url='https://coursesearch03.fcu.edu.tw/Service/Auth.asmx/login'
+    Request_Payload={"id":NID,"password":PW,"baseOptions":{"lang":"cht","year":year,"sms":sms}}
+    r=Session_requests.post(url,headers=header,data=json.dumps(Request_Payload))
+    ch = -1
+    ch = r.text.find("\"status\\\":0")
+    if ch is not -1 :
+        return True
+    else:
+        return False
