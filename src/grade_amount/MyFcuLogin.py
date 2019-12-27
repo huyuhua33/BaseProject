@@ -32,9 +32,11 @@ def MyfcuLogin(userName,userPassword):
         try:
             browser.find_element_by_id("FailureText")
             browser.close()
+            print("帳號或密碼有誤\n")
             TorF=0
         except:
             browser.close()
+            print("登入成功")
             TorF=1
     print("院系必修:      63 已修得學分:",IECSmust)
     if (IECSmust<63):
