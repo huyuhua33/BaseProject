@@ -3,9 +3,8 @@ import json
 
 Session_requests=requests.Session()
 header = {'Content-Type': 'application/json'}
-def c_main(code,y,sms):#y 民國學年 sms 1 or 2 
+def c_main(s_code,y,sms):#y 民國學年 sms 1 or 2
     url='https://coursesearch03.fcu.edu.tw/Service/Search.asmx/GetType2Result'
-    s_code=code
     Request_Payload={
         "baseOptions":{"lang":"cht","year":y,"sms":sms},
         "typeOptions":{"code":{"enabled":True,"value":s_code},
@@ -29,7 +28,38 @@ def c_left(r):
 
     Left = r.json()['d'].find('scr_acptcnt')
     Max = r.json()['d'].find('scr_precnt')
-    m_Left = int(r.json()['d'][Left + 13:Left + 15])
+    Remarks = r.json()['d'].find('scr_remarks')
+    m_Left = int(r.json()['d'][Left +13: Remarks-4])
     m_Max = int(r.json()['d'][Max + 12:Max + 14])
     left = m_Max - m_Left
-    return left
+    if left <= 0:
+        return 0
+    else:
+        return left
+def c_check(NID,PW,year,sms):#y 民國學年 sms 1 or 2
+    url='https://coursesearch03.fcu.edu.tw/Service/Auth.asmx/login'
+    Request_Payload={"id":NID,"password":PW,"baseOptions":{"lang":"cht","year":year,"sms":sms}}
+    r=Session_requests.post(url,headers=header,data=json.dumps(Request_Payload))
+    ch = -1
+    ch = r.text.find("\"status\\\":0")
+    if ch is not -1 :
+        return True
+    else:
+        return False
+
+#r = c_main('1234','108','1')
+#c = c_left(r)
+#print(c)
+#print("\n")
+'''
+r = c_main('1234','108','1')
+Left = r.json()['d'].find('scr_acptcnt')
+Max = r.json()['d'].find('scr_precnt')
+Remarks = r.json()['d'].find('scr_remarks')
+m_Left = r.json()['d'][Left + 13:Left + int(Remarks)-2]
+m_Max = r.json()['d'][Max + 12:Max + 14]
+print(r.text)
+print(m_Left)
+print(m_Max)
+'''
+#{"d":"{\"message\":\"\",\"total\":0,\"items\":[]}"}
