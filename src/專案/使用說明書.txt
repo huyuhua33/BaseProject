@@ -1,7 +1,51 @@
-請安裝
-pip install requests
-pip install json
-pip install theading
-pip install selenium
-pip install beautifulsoup4
-pip install smtplib
+注意事項:
+    1.需要安裝的東西，有可能會更多或更少
+    2.需要以系統管理員身分下(SQLite功能)的cmd(密碼屏蔽功能)開啟
+
+請安裝:
+    pip install requests
+    pip install json
+    pip install theading
+    pip install selenium
+    pip install beautifulsoup4
+    pip install smtplib
+    
+環境介紹:
+    1.以python開發
+    2.軟工.py是整個專案的主畫面(開始畫面、主程式)
+    3.sub目錄下，放各個功能的code(副程式)
+    
+使用說明:
+    1.請將整個"專案目錄"下載下來
+    2.安裝模組
+    3.在系統管理員身分下(SQLite功能)的cmd(密碼屏蔽功能)開啟
+       (  注:非cmd開啟，密碼會顯示出來喔~~  )
+    4.輸入 "真實的" NIC帳密和email
+    5.輸入email的認證碼
+    6.功能介紹:
+        1.登出:
+            ......就是登出....
+        2.交易平台(有點複雜):
+           作為退課者(釋放課程的人)會做的動作:
+               2.退課:
+                   將課程資料放入系統(釋放課程)，供其他人選擇
+               3.交易確認:
+                   當有人想要您的課時，會寄信給您，您可選擇同意或不同意
+               5.刪除交易平台上記錄
+                   若您不想繼續釋放課程，可將課程資料從系統內刪除
+           作為選課者(找課程的人)會做的動作:
+               注:擁有者做完交易確認後，選課者可在紀錄表單中看到
+               1.選課:
+                   選擇您要的課程，系統會寄信給此課的擁有者
+               4.刪除紀錄表單的紀錄:
+                   讓畫面乾淨一些
+           兩者都會做的動作:
+               6.查看交易平台:
+                   印出系統上所有(課程擁有者):
+               7.登出交易平台:
+       3.課於通知:
+       4.推薦課程查詢:
+       5.開始選課:
+               
+            
+    
