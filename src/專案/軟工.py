@@ -11,7 +11,7 @@ import sub.transaction
 import sub.sitleft as sit
 import random
 import sqlite3
-import getpass
+#import getpass
 import msvcrt,sys
 import datetime
 import time
@@ -21,15 +21,15 @@ import sub.mail as mailing
 import json
 import requests
 #
-    enable=False
+enable=False
 
 """
     以下副程式接用平行處理
 """
 #平行處理停止用(True會關閉)
-    stop_thread=False
-    thread_in_time=False
-    thread_over_time=False
+stop_thread=False
+thread_in_time=False
+thread_over_time=False
     
 def timeUpdate(enable, registerhtml):
     t = time.time()
@@ -50,8 +50,8 @@ def c_main(enable, registerhtml):#y 民國學年 sms 1 or 2
     Session_requests=requests.Session()
     header = {'Content-Type': 'application/json'}
     while True:
-        if stop_thread or not(enable):
-            break
+        #if stop_thread or not(enable):
+        #    break
         for i in sub.register.courseIDs:
             url='https://coursesearch03.fcu.edu.tw/Service/Search.asmx/GetType2Result'
             Request_Payload={
@@ -68,7 +68,7 @@ def c_main(enable, registerhtml):#y 民國學年 sms 1 or 2
             left = sub.search.c_left(r)
 #            print('選課代號：', i, " with ", left ,"left.")
             if left > 0 :
-                sub.register.register(enable, registerhtml, i)
+               sub.register.register(enable, registerhtml, i)
 def send(email, ID):
     r = mailing.mail(email, 1, 0, ID)
     while (r == -1):
@@ -173,7 +173,8 @@ while(True):
         3.課餘通知
         4.推薦課程查詢
         5.開始選課
-    '''
+        
+    請選擇功能: '''
     choice = input(c)
     if choice == '1':
         break
