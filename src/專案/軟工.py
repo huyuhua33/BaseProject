@@ -24,9 +24,9 @@ import requests
 enable=False
 
 """
-    ä»¥ä¸‹å‰¯ç¨‹å¼æ¥ç”¨å¹³è¡Œè™•ç†
+    ¥H¤U°Æµ{¦¡±µ¥Î¥­¦æ³B²z
 """
-#å¹³è¡Œè™•ç†åœæ­¢ç”¨(Trueæœƒé—œé–‰)
+#¥­¦æ³B²z°±¤î¥Î(True·|Ãö³¬)
 stop_thread=False
 thread_in_time=False
 thread_over_time=False
@@ -42,11 +42,11 @@ def timeUpdate(enable, registerhtml):
                 sub.register.register(enable, registerhtml)
                 t = time.time()
             elif int(now - t) % 10 == 0:
-                print("å·²ç¶“ç¶“é", int(now - t), "ç§’")
+                print("¤w¸g¸g¹L", int(now - t), "¬í")
                 time.sleep(1)
         else:
             break
-def c_main(enable, registerhtml):#y æ°‘åœ‹å­¸å¹´ sms 1 or 2
+def c_main(enable, registerhtml):#y ¥Á°ê¾Ç¦~ sms 1 or 2
     Session_requests=requests.Session()
     header = {'Content-Type': 'application/json'}
     while True:
@@ -65,123 +65,123 @@ def c_main(enable, registerhtml):#y æ°‘åœ‹å­¸å¹´ sms 1 or 2
                                }
             }
             r=Session_requests.post(url,headers=header,data=json.dumps(Request_Payload))
-            left = sub.search.c_left(r)
-#            print('é¸èª²ä»£è™Ÿï¼š', i, " with ", left ,"left.")
+            left = sub.search.c_left_for_register(r)
+            print('¿ï½Ò¥N¸¹¡G', i, " with ", left ,"left.")
             if left > 0 :
                sub.register.register(enable, registerhtml, i)
 def send(email, ID):
     r = mailing.mail(email, 1, 0, ID)
     while (r == -1):
-        print("è¼¸å…¥éŒ¯èª¤")
-        ID = input("è«‹è¼¸å…¥æŸ¥è©¢ä½ç½®ä¹‹é¸èª²ä»£ç¢¼:")
+        print("¿é¤J¿ù»~")
+        ID = input("½Ğ¿é¤J¬d¸ß¦ì¸m¤§¿ï½Ò¥N½X:")
         r = mailing.mail(email, 1, 0, ID)
     return 0
 
 def check_timeout():
-    #è¨­å®šåœæ­¢æ™‚é–“é»
+    #³]©w°±¤î®É¶¡ÂI
     start_time=datetime.datetime.now()
     stop_time=start_time+datetime.timedelta(minutes=5)
     while(True):
         if(thread_in_time==True):
-            #å·²èªè­‰æˆåŠŸ
+            #¤w»{ÃÒ¦¨¥\
             break
         if(stop_time<=datetime.datetime.now()):
-            #æ™‚é–“åˆ°äº†
+            #®É¶¡¨ì¤F
             thread_over_time=True
-            print("é©—è­‰è¶…æ™‚")
-            print("é‡æ–°ç™»å…¥")
-            print("è¼¸å…¥ä»»æ„å¥ç¹¼çºŒ")
+            print("ÅçÃÒ¶W®É")
+            print("­«·sµn¤J")
+            print("¿é¤J¥ô·N°·Ä~Äò")
             break
 """
-    ä»¥ä¸‹å‰¯ç¨‹å¼å”åŠ©ç™»å…¥åŠŸèƒ½ï¼Œæ²’å¹³è¡Œè™•ç†
+    ¥H¤U°Æµ{¦¡¨ó§Uµn¤J¥\¯à¡A¨S¥­¦æ³B²z
 """
-#ç¶²è·¯ä¸ŠæŸ¥çš„ï¼Œä½¿ç”¨cmdæ™‚å¯†ç¢¼å±è”½ç”¨
+#ºô¸ô¤W¬dªº¡A¨Ï¥Îcmd®É±K½X«Ì½ª¥Î
 def pwd_input():    
     chars = []   
     while True:  
         try:  
             newChar = msvcrt.getch().decode(encoding="utf-8")  
         except:  
-            return input("ä½ å¾ˆå¯èƒ½ä¸æ˜¯åœ¨cmdå‘½ä»¤è¡Œä¸‹é‹è¡Œï¼Œå¯†ç¢¼è¼¸å…¥å°‡ä¸èƒ½éš±è—:")  
-        if newChar in "\r\n": # å¦‚æœæ˜¯æ›è¡Œï¼Œå‰‡è¼¸å…¥çµæŸ               
+            return input("§A«Ü¥i¯à¤£¬O¦bcmd©R¥O¦æ¤U¹B¦æ¡A±K½X¿é¤J±N¤£¯àÁôÂÃ:")  
+        if newChar in "\r\n": # ¦pªG¬O´«¦æ¡A«h¿é¤Jµ²§ô               
              break   
-        elif newChar == "\b": # å¦‚æœæ˜¯é€€æ ¼ï¼Œå‰‡åˆªé™¤å¯†ç¢¼æœ«å°¾ä¸€ä½ä¸¦ä¸”åˆªé™¤ä¸€å€‹æ˜Ÿè™Ÿ   
+        elif newChar == "\b": # ¦pªG¬O°h®æ¡A«h§R°£±K½X¥½§À¤@¦ì¨Ã¥B§R°£¤@­Ó¬P¸¹   
              if chars:    
                  del chars[-1]   
-                 msvcrt.putch("\b".encode(encoding="utf-8")) # å…‰æ¨™å›é€€ä¸€æ ¼  
-                 msvcrt.putch( " ".encode(encoding="utf-8")) # è¼¸å‡ºä¸€å€‹ç©ºæ ¼è¦†è“‹åŸä¾†çš„æ˜Ÿè™Ÿ  
-                 msvcrt.putch("\b".encode(encoding="utf-8")) # å…‰æ¨™å›é€€ä¸€æ ¼æº–å‚™æ¥å—æ–°çš„è¼¸å…¥                   
+                 msvcrt.putch("\b".encode(encoding="utf-8")) # ¥ú¼Ğ¦^°h¤@®æ  
+                 msvcrt.putch( " ".encode(encoding="utf-8")) # ¿é¥X¤@­ÓªÅ®æÂĞ»\­ì¨Óªº¬P¸¹  
+                 msvcrt.putch("\b".encode(encoding="utf-8")) # ¥ú¼Ğ¦^°h¤@®æ·Ç³Æ±µ¨ü·sªº¿é¤J                   
         else:  
             chars.append(newChar)  
-            msvcrt.putch("*".encode(encoding="utf-8")) # é¡¯ç¤ºç‚ºæ˜Ÿè™Ÿ  
+            msvcrt.putch("*".encode(encoding="utf-8")) # Åã¥Ü¬°¬P¸¹  
     return ("".join(chars) )  
 
-#ç¬¬ä¸€æ¬¡å‰µå»ºsqlç”¨
+#²Ä¤@¦¸³Ğ«Øsql¥Î
 def creat_SQllite():
-    #å»ºç«‹è³‡æ–™åº«
+    #«Ø¥ß¸ê®Æ®w
     sql = '''Create table users( class_name text, class_id int, account text, email text, push_account text)'''
-    conn = sqlite3.connect("class_table.db")  #é€£çµè³‡æ–™åº«
-    conn.execute(sql)  #åŸ·è¡ŒæŒ‡ä»¤
-    conn.close()  #é—œé–‰è³‡æ–™åº«
+    conn = sqlite3.connect("class_table.db")  #³sµ²¸ê®Æ®w
+    conn.execute(sql)  #°õ¦æ«ü¥O
+    conn.close()  #Ãö³¬¸ê®Æ®w
     conn = sqlite3.connect("tmp.db")
     conn.execute(sql)
     conn.close()
 
-#ç¬¬ä¸€æ¬¡åŸ·è¡Œè«‹å°‡creatåŠŸèƒ½æ‰“é–‹
+#²Ä¤@¦¸°õ¦æ½Ğ±Ncreat¥\¯à¥´¶}
 #creat_SQllite()
 while(True): 
-    print("NIDå¸³è™Ÿ: ")
+    print("NID±b¸¹: ")
     nid_address=input("")
     print("")
-    print("NIDå¯†ç¢¼: ")
-    nid_password=pwd_input() #cmdä¸‹é®è”½è¼¸å…¥
+    print("NID±K½X: ")
+    nid_password=pwd_input() #cmd¤U¾B½ª¿é¤J
     print("")
     print("")
-    #è¨ˆæ™‚é–‹å§‹ï¼Œè‹¥ç™»å…¥ç”¨æ™‚è¶…é10åˆ†é˜ï¼ŒçµæŸç™»å…¥åŠŸèƒ½æ™‚ï¼Œå†ç™»å…¥å­¸æ ¡ç³»çµ±
+    #­p®É¶}©l¡A­Yµn¤J¥Î®É¶W¹L10¤ÀÄÁ¡Aµ²§ôµn¤J¥\¯à®É¡A¦Aµn¤J¾Ç®Õ¨t²Î
     time_check=datetime.datetime.now()
     reset_time=time_check+datetime.timedelta(minutes=10)
-    #ç¢ºèªå¸³å¯†æ˜¯å¦æ­£ç¢º
+    #½T»{±b±K¬O§_¥¿½T
     status=sub.search.c_check(nid_address, nid_password,'108','1')
     if(status==False):
-        print("å¸³å¯†error")
-        print("é‡æ–°ç™»å…¥")
+        print("±b±Kerror")
+        print("­«·sµn¤J")
         continue
-    email=input("è«‹è¼¸å…¥email: ")
-    make_sure=random.randint(10000, 99999)  #randomèªè­‰ç¢¼
-    sub.mail.mail(email,0,make_sure,0)   #å¯„emailä»¥èªè­‰emailçš„çœŸå¯¦æ€§
-    print("å·²å¯„å‡ºé©—è­‰ç¢¼\n")
-    threading.Thread(target=check_timeout).start() #è¶…éäº”åˆ†é˜æœªèªè­‰ï¼Œé©—è­‰è¶…æ™‚ï¼Œ
-    email_sure=input("è«‹è¼¸å…¥é©—è­‰ç¢¼: ")
+    email=input("½Ğ¿é¤Jemail: ")
+    make_sure=random.randint(10000, 99999)  #random»{ÃÒ½X
+    sub.mail.mail(email,0,make_sure,0)   #±Hemail¥H»{ÃÒemailªº¯u¹ê©Ê
+    print("¤w±H¥XÅçÃÒ½X\n")
+    threading.Thread(target=check_timeout).start() #¶W¹L¤­¤ÀÄÁ¥¼»{ÃÒ¡AÅçÃÒ¶W®É¡A
+    email_sure=input("½Ğ¿é¤JÅçÃÒ½X: ")
     if (thread_over_time==True):
         continue
-    elif (int(email_sure)==make_sure) :  #èªè­‰ç¢¼æ¯”å°
+    elif (int(email_sure)==make_sure) :  #»{ÃÒ½X¤ñ¹ï
         thread_in_time=True
-        print("é©—è­‰æˆåŠŸ")
+        print("ÅçÃÒ¦¨¥\")
         break
     else:
-        print("é©—è­‰å¤±æ•—")
-        print("é‡æ–°ç™»å…¥")
+        print("ÅçÃÒ¥¢±Ñ")
+        print("­«·sµn¤J")
         continue
     if(datetime.datetime.now()>reset_time):
-         sub.login.loging(nid_address, nid_password) #è¶…é10åˆ†é˜ï¼Œé‡æ–°ç™»å…¥
+         sub.login.loging(nid_address, nid_password) #¶W¹L10¤ÀÄÁ¡A­«·sµn¤J
 while(True):
-    #åŠŸèƒ½é¸å–®
+    #¥\¯à¿ï³æ
     c = '''
-    åŠŸèƒ½é¸æ“‡: 
-        1.ç™»å‡º
-        2.äº¤æ˜“å¹³å°
-        3.èª²é¤˜é€šçŸ¥
-        4.æ¨è–¦èª²ç¨‹æŸ¥è©¢
-        5.é–‹å§‹é¸èª²
+    ¥\¯à¿ï¾Ü: 
+        1.µn¥X
+        2.¥æ©ö¥­¥x
+        3.½Ò¾l³qª¾
+        4.±ÀÂË½Òµ{¬d¸ß
+        5.¶}©l¿ï½Ò
         
-    è«‹é¸æ“‡åŠŸèƒ½: '''
+    ½Ğ¿ï¾Ü¥\¯à: '''
     choice = input(c)
     if choice == '1':
         break
     elif choice == '2':
         sub.transaction.transaction(nid_address,nid_password,email)
     elif choice=='3' :
-        ID = input("è«‹è¼¸å…¥æŸ¥è©¢ä½ç½®ä¹‹é¸èª²ä»£ç¢¼:")
+        ID = input("½Ğ¿é¤J¬d¸ß¦ì¸m¤§¿ï½Ò¥N½X:")
         send(email, ID)
     elif choice == '4':
         gsi.MyfcuLogin(nid_address,nid_password)
@@ -191,10 +191,8 @@ while(True):
             threading.Thread(target=timeUpdate, args=(enable, html)).start()
             threading.Thread(target=c_main, args=(enable, html)).start()
         else:
-            print("å·²ç¶“ç™»å…¥é¸èª²ç³»çµ±äº†")
+            print("¤w¸gµn¤J¿ï½Ò¨t²Î¤F")
     else:
         print("Input error, please try again")
-stop_thread=True #åœæ­¢å¹³è¡Œè™•ç†
-del nid_address, nid_password, email #åˆªæ‰ä½¿ç”¨è€…å€‹è³‡
-
-
+stop_thread=True #°±¤î¥­¦æ³B²z
+del nid_address, nid_password, email #§R±¼¨Ï¥ÎªÌ­Ó¸ê
