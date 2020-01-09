@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Dec 25 17:24:22 2019
-
 @author: Jason
 """
 import requests
@@ -49,18 +48,18 @@ def login_start(username, password):
     html = login(username, password)
 
     # input error
-    if html.text.find('éŒ¯èª¤') != -1:
-#        ctypes.windll.user32.MessageBoxW(0, "å¸³è™Ÿæˆ–å¯†ç¢¼éŒ¯èª¤", 'Error', 0)
-        print("å¸³è™Ÿæˆ–å¯†ç¢¼éŒ¯èª¤")
+    if html.text.find('¿ù»~') != -1:
+        ctypes.windll.user32.MessageBoxW(0, "±b¸¹©Î±K½X¿ù»~", 'Error', 0)
+        print("±b¸¹©Î±K½X¿ù»~")
         return 0, ''
 
     # the time is not allowed
-    elif html.text.find('ä¸å¾—å†é€²å…¥ç³»çµ±') != -1:
-#        ctypes.windll.user32.MessageBoxW(0, 'ç›®å‰ä¸æ˜¯é–‹æ”¾æ™‚é–“', 'Error', 0)
-        print("ç›®å‰ä¸æ˜¯é–‹æ”¾æ™‚é–“")
+    elif html.text.find('¤£±o¦A¶i¤J¨t²Î') != -1:
+        ctypes.windll.user32.MessageBoxW(0, '¥Ø«e¤£¬O¶}©ñ®É¶¡', 'Error', 0)
+        print("¥Ø«e¤£¬O¶}©ñ®É¶¡")
         return 0, ''
 
     else:
-#        ctypes.windll.user32.MessageBoxW(0, 'ç™»å…¥æˆåŠŸ', 'Success', 0)
-        print("ç™»å…¥æˆåŠŸ")
+#        ctypes.windll.user32.MessageBoxW(0, 'µn¤J¦¨¥\', 'Success', 0)
+        print("µn¤J¦¨¥\")
         return 1, html
