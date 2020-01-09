@@ -3,7 +3,7 @@ import json
 
 Session_requests=requests.Session()
 header = {'Content-Type': 'application/json'}
-def c_main(s_code,y,sms):#y æ°‘åœ‹å­¸å¹´ sms 1 or 2
+def c_main(s_code,y,sms):#y ¥Á°ê¾Ç¦~ sms 1 or 2
     url='https://coursesearch03.fcu.edu.tw/Service/Search.asmx/GetType2Result'
     Request_Payload={
         "baseOptions":{"lang":"cht","year":y,"sms":sms},
@@ -39,7 +39,7 @@ def c_left(r):
         return 0
     else:
         return left
-    """
+def c_left_for_register(r):
     Left = r.json()['d'].find('scr_acptcnt')
     Max = r.json()['d'].find('scr_precnt')
     m_Left = int(r.json()['d'][Left + 13:Left + 15])
@@ -49,8 +49,7 @@ def c_left(r):
         return 0
     else:
         return left
-    """
-def c_check(NID,PW,year,sms):#y æ°‘åœ‹å­¸å¹´ sms 1 or 2
+def c_check(NID,PW,year,sms):#y ¥Á°ê¾Ç¦~ sms 1 or 2
     url='https://coursesearch03.fcu.edu.tw/Service/Auth.asmx/login'
     Request_Payload={"id":NID,"password":PW,"baseOptions":{"lang":"cht","year":year,"sms":sms}}
     r=Session_requests.post(url,headers=header,data=json.dumps(Request_Payload))
@@ -60,5 +59,3 @@ def c_check(NID,PW,year,sms):#y æ°‘åœ‹å­¸å¹´ sms 1 or 2
         return True
     else:
         return False    
-
-
