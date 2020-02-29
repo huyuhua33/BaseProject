@@ -4,6 +4,7 @@
     <extensionMap>
       <mapping ext="csv" type="PLAIN_TEXT" />
       <mapping ext="kv" type="PLAIN_TEXT" />
+      <mapping ext="set" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
