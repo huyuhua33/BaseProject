@@ -1,14 +1,15 @@
 import smtplib, ssl
 import sub.search as search
 from email.mime.text import MIMEText
-
+senderUser =""
+senderPass = ""
 
 def mail(receiver_email, sw, randword, id):
     port = 587  # For starttls
     smtp_server = "smtp.gmail.com"
-    sender_email = "siganmorfu.testing@gmail.com"
+    sender_email = senderUser
     # receiver_email = "d0713227@mail.fcu.edu.tw"
-    password = "Stesting1121"
+    password = senderPass
     if (sw == 1):
         r = search.c_main(id)
         ms = "the course u choice:" + search.c_name(r) + "\n" + "seat left: " + str(search.c_left(r))
